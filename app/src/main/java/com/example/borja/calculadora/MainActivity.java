@@ -19,13 +19,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private int i = 0 , a = 0;
     private boolean operacion = false;
-    private int iOperacion = 3;
+    private int iOperacion = 0;
     private char z;
-    private TextView resultado;
+    private TextView resultado, operando1, operando2,id1;
 
 
     @Override
     public void onClick(View v) {
+        String cadena = null;
 
           if (button0.getId() == v.getId()) { //se mira la id de el boton  segun la id de la vista.
 
@@ -82,7 +83,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 operacion = true;
                 iOperacion = 3;
            } else if (buttonIgual.getId() == v.getId()){
-                String cadena;
                 switch (iOperacion) {
                     case 1:
                         cadena = String.valueOf(div());
@@ -113,12 +113,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 i = 0 ;
                 a = 0 ;
-                iOperacion = 3;
+                iOperacion = 0;
                 operacion = false;
+              this.operando1.setText("");
+              this.operando2.setText("");
+              this.id1.setText("");
 
-            } else {
+          } else {
                 Toast.makeText(this,"ERROR",Toast.LENGTH_LONG).show();
             }
+        if( i > 0 ){ cadena = String.valueOf(i);
+            this.operando1.setText(cadena); }
+
+        switch (iOperacion) {
+            case 1:
+
+                this.id1.setText("/");
+
+                break;
+            case 2:
+
+                this.id1.setText("*");
+
+
+
+                break;
+            case 3:
+
+                this.id1.setText("+");
+
+
+                break;
+            case 4:
+
+                this.id1.setText("-");
+
+                break;
+
+        }
+        if (a > 0) {
+            cadena = String.valueOf(a);
+            this.operando2.setText(cadena); ;
+        }
+
+
+
     }
 
 
@@ -145,6 +184,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonIgual = (Button) findViewById(R.id.button14);
 
         this.resultado = (TextView) findViewById(R.id.resul);
+        this.operando1 = (TextView) findViewById(R.id.operando1);
+        this.operando2 = (TextView) findViewById(R.id.operando2);
+        this.id1 = (TextView) findViewById(R.id.id1);
 
         button0.setOnClickListener(this);
         button1.setOnClickListener(this);
@@ -187,22 +229,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private int suma(){
-        i = i + a;
-        return i;
+
+        return i + a;
     }
     private int mul(){
-        i = i * a;
-        return i;
+
+        return i * a;
     }
 
     private int resta(){
-        i = i - a;
-        return i ;
+
+        return i - a ;
     }
 
     private int div(){
-       i = i / a;
-        return i;
+
+        return  i / a;
     }
 
 
